@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Importer">
+      <UniqueIdentifier>{e5902d51-f212-4ac7-b2ac-1c7992daa037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets">
+      <UniqueIdentifier>{c68faeaf-dd7d-48e1-b9fa-b686ef5678b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Components">
+      <UniqueIdentifier>{2f127d87-5ecf-4ba7-b807-4eb675976b46}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Importer\ObjImporter.h">
+      <Filter>Importer</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Importer\ObjImporter.cpp">
+      <Filter>Importer</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
