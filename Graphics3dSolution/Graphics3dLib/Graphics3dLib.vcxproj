@@ -88,11 +88,15 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)\..;D:\Libs\glm-0.9.8.4;D:\Libs\glfw-3.2.1\include;D:\Libs\glew-2.0.0\include;D:\Libs\soil\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>D:\Libs\glew-2.0.0\lib\Release\Win32;D:\Libs\soil\lib\v110\Win32\Release;D:\Libs\glfw-3.2.1\lib-vc2012</AdditionalLibraryDirectories>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>D:\Libs\glew-2.0.0\lib\v140\x64\Release;D:\Libs\soil\lib\v140\x64\Release;D:\Libs\glfw-3.2.1\lib\vc140\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;soil.lib;glfw3.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -121,13 +125,17 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(ProjectDir)\..;D:\Libs\glm-0.9.8.4;D:\Libs\glfw-3.2.1\include;D:\Libs\glew-2.0.0\include;D:\Libs\soil\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>D:\Libs\glew-2.0.0\lib\Release\Win32;D:\Libs\soil\lib\v110\Win32\Release;D:\Libs\glfw-3.2.1\lib-vc2012</AdditionalLibraryDirectories>
     </Link>
+    <Lib>
+      <AdditionalLibraryDirectories>D:\Libs\glew-2.0.0\lib\v140\x64\Release;D:\Libs\soil\lib\v140\x64\Release;D:\Libs\glfw-3.2.1\lib\vc140\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;soil.lib;glfw3.lib</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Importer\ObjImporter.h" />

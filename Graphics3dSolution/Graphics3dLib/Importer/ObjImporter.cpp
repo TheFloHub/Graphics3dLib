@@ -92,11 +92,11 @@ bool G3d::ObjImporter::addFace(string& line)
 	int vertexIndices[3];
 	stringstream sstream;
 	unsigned int vertexIndex, faceTokenIndex;
-	size_t vi, ti, ni;
+	int vi, ti, ni;
 	for (faceTokenIndex = 1, vertexIndex = 0; faceTokenIndex<4; ++faceTokenIndex, ++vertexIndex)
 	{
 		vector<string> infoTokens = getTokens(faceTokens[faceTokenIndex], '/');
-		int numberOfInfo = infoTokens.size();
+		size_t numberOfInfo = infoTokens.size();
 
 		// Sort the normals and texture coords by the index of the vertex
 		if (numberOfInfo == 1)
