@@ -138,10 +138,67 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Assets\Material.h" />
+    <ClInclude Include="Assets\MaterialManager.h" />
+    <ClInclude Include="Assets\Materials\DefaultDepthMaterial.h" />
+    <ClInclude Include="Assets\Materials\DiffuseMaterial.h" />
+    <ClInclude Include="Assets\Materials\SpecularMaterial.h" />
+    <ClInclude Include="Assets\Materials\TerrainDepthMaterial.h" />
+    <ClInclude Include="Assets\Materials\TerrainMaterial.h" />
+    <ClInclude Include="Assets\Mesh.h" />
+    <ClInclude Include="Assets\MeshManager.h" />
+    <ClInclude Include="Assets\Shader.h" />
+    <ClInclude Include="Assets\ShaderManager.h" />
+    <ClInclude Include="Assets\Texture.h" />
+    <ClInclude Include="Assets\TextureManager.h" />
+    <ClInclude Include="Components\Camera.h" />
+    <ClInclude Include="Components\CameraController.h" />
+    <ClInclude Include="Components\Component.h" />
+    <ClInclude Include="Components\Light.h" />
+    <ClInclude Include="Components\MeshRenderer.h" />
+    <ClInclude Include="Components\Transform.h" />
+    <ClInclude Include="GlInfo.h" />
     <ClInclude Include="Importer\ObjImporter.h" />
+    <ClInclude Include="Input\InputManager.h" />
+    <ClInclude Include="Rendering\FrameBufferObject.h" />
+    <ClInclude Include="Rendering\RenderPath.h" />
+    <ClInclude Include="Rendering\RenderPaths\DeferredShadingPass.h" />
+    <ClInclude Include="Rendering\RenderPaths\GraphicsBufferPath.h" />
+    <ClInclude Include="Rendering\RenderPaths\ShadowMapPath.h" />
+    <ClInclude Include="Rendering\SceneRenderer.h" />
+    <ClInclude Include="Scene\SceneObject.h" />
+    <ClInclude Include="SharedPtrTypes.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Assets\Material.cpp" />
+    <ClCompile Include="Assets\MaterialManager.cpp" />
+    <ClCompile Include="Assets\Materials\DefaultDepthMaterial.cpp" />
+    <ClCompile Include="Assets\Materials\DiffuseMaterial.cpp" />
+    <ClCompile Include="Assets\Materials\SpecularMaterial.cpp" />
+    <ClCompile Include="Assets\Materials\TerrainDepthMaterial.cpp" />
+    <ClCompile Include="Assets\Materials\TerrainMaterial.cpp" />
+    <ClCompile Include="Assets\Mesh.cpp" />
+    <ClCompile Include="Assets\MeshManager.cpp" />
+    <ClCompile Include="Assets\Shader.cpp" />
+    <ClCompile Include="Assets\ShaderManager.cpp" />
+    <ClCompile Include="Assets\Texture.cpp" />
+    <ClCompile Include="Assets\TextureManager.cpp" />
+    <ClCompile Include="Components\Camera.cpp" />
+    <ClCompile Include="Components\CameraController.cpp" />
+    <ClCompile Include="Components\Component.cpp" />
+    <ClCompile Include="Components\Light.cpp" />
+    <ClCompile Include="Components\MeshRenderer.cpp" />
+    <ClCompile Include="Components\Transform.cpp" />
+    <ClCompile Include="GlInfo.cpp" />
     <ClCompile Include="Importer\ObjImporter.cpp" />
+    <ClCompile Include="Input\InputManager.cpp" />
+    <ClCompile Include="Rendering\FrameBufferObject.cpp" />
+    <ClCompile Include="Rendering\RenderPath.cpp" />
+    <ClCompile Include="Rendering\RenderPaths\DeferredShadingPass.cpp" />
+    <ClCompile Include="Rendering\RenderPaths\GraphicsBufferPath.cpp" />
+    <ClCompile Include="Rendering\RenderPaths\ShadowMapPath.cpp" />
+    <ClCompile Include="Rendering\SceneRenderer.cpp" />
+    <ClCompile Include="Scene\SceneObject.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -10,15 +10,195 @@
     <Filter Include="Components">
       <UniqueIdentifier>{2f127d87-5ecf-4ba7-b807-4eb675976b46}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{b91956fa-a524-4d2d-b88d-a0df38ad58d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Assets\Materials">
+      <UniqueIdentifier>{dc5030f5-5279-4fe8-8a3c-05f0282d46aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{c6a3761c-7fec-4822-9143-3305dc72dd58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering">
+      <UniqueIdentifier>{c535b2ad-c925-4890-b8ea-c10e80edbe58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Rendering\Renderpaths">
+      <UniqueIdentifier>{b5c22f1d-15ef-4879-a716-b0aa43485430}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Importer\ObjImporter.h">
       <Filter>Importer</Filter>
     </ClInclude>
+    <ClInclude Include="Components\Camera.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\CameraController.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Component.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Light.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\MeshRenderer.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Transform.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneObject.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="GlInfo.h" />
+    <ClInclude Include="SharedPtrTypes.h" />
+    <ClInclude Include="Assets\Material.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\MaterialManager.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Mesh.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\MeshManager.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Shader.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\ShaderManager.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Texture.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\TextureManager.h">
+      <Filter>Assets</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Materials\DefaultDepthMaterial.h">
+      <Filter>Assets\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Materials\DiffuseMaterial.h">
+      <Filter>Assets\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Materials\SpecularMaterial.h">
+      <Filter>Assets\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Materials\TerrainDepthMaterial.h">
+      <Filter>Assets\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Assets\Materials\TerrainMaterial.h">
+      <Filter>Assets\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\InputManager.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\FrameBufferObject.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RenderPath.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\SceneRenderer.h">
+      <Filter>Rendering</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RenderPaths\DeferredShadingPass.h">
+      <Filter>Rendering\Renderpaths</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RenderPaths\GraphicsBufferPath.h">
+      <Filter>Rendering\Renderpaths</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RenderPaths\ShadowMapPath.h">
+      <Filter>Rendering\Renderpaths</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Importer\ObjImporter.cpp">
       <Filter>Importer</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Camera.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\CameraController.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Component.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Light.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\MeshRenderer.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Transform.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneObject.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="GlInfo.cpp" />
+    <ClCompile Include="Assets\Material.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\MaterialManager.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Mesh.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\MeshManager.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Shader.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\ShaderManager.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Texture.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\TextureManager.cpp">
+      <Filter>Assets</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Materials\DefaultDepthMaterial.cpp">
+      <Filter>Assets\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Materials\DiffuseMaterial.cpp">
+      <Filter>Assets\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Materials\SpecularMaterial.cpp">
+      <Filter>Assets\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Materials\TerrainDepthMaterial.cpp">
+      <Filter>Assets\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Materials\TerrainMaterial.cpp">
+      <Filter>Assets\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\InputManager.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\FrameBufferObject.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\RenderPath.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\SceneRenderer.cpp">
+      <Filter>Rendering</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\RenderPaths\DeferredShadingPass.cpp">
+      <Filter>Rendering\Renderpaths</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\RenderPaths\GraphicsBufferPath.cpp">
+      <Filter>Rendering\Renderpaths</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\RenderPaths\ShadowMapPath.cpp">
+      <Filter>Rendering\Renderpaths</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

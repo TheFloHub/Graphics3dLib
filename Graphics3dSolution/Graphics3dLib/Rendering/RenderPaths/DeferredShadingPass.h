@@ -1,0 +1,66 @@
+/**
+* @author Florian Feuerstein 
+* @date 09.03.2017
+*
+*/
+
+#pragma once
+
+#include <Graphics3dLib/SharedPtrTypes.h>
+#include <Graphics3dLib/Rendering/RenderPath.h>
+#include <glew.h>
+
+namespace G3d
+{
+
+	class Camera;
+	class Light;
+
+	class DeferredShadingPass : public RenderPath
+	{
+	public:
+
+		DeferredShadingPass(unsigned int width, unsigned int height);
+
+		virtual ~DeferredShadingPass();
+		
+		void render(Camera const* pCamera, Light const* pLight);
+
+		void setInputDepth(TextureCPtr pTexture);
+
+		void setInputNormals(TextureCPtr pTexture);
+
+		void setInputAlbedo(TextureCPtr pTexture);
+
+		void setInputShadowMap(TextureCPtr pTexture);
+		
+	protected:
+		
+		DeferredShadingPass(DeferredShadingPass const&) = delete;
+
+		DeferredShadingPass& operator=(DeferredShadingPass const&) = delete;
+
+		unsigned int mWidth;
+
+		unsigned int mHeight;
+
+		TextureCPtr mpInputDepth;
+
+		TextureCPtr mpInputNormals;
+
+		TextureCPtr mpInputAlbedo;
+
+		TextureCPtr mpInputShadowMap;
+
+		GLuint mLightTypeLoc;
+		GLuint mLightPosDirLoc;
+		GLuint mLightColorLoc;
+		GLuint mLightIntensityLoc;
+		GLuint mNearPlaneLoc;
+		GLuint mFarPlaneLoc;
+		GLuint mInvProjLoc;
+		GLuint mCameraToLightTrafo;
+
+	};
+
+}
