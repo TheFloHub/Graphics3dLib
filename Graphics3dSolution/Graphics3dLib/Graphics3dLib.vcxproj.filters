@@ -25,6 +25,12 @@
     <Filter Include="Rendering\Renderpaths">
       <UniqueIdentifier>{b5c22f1d-15ef-4879-a716-b0aa43485430}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{4f026f75-1ceb-4787-9d8b-93f977330b00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Shader">
+      <UniqueIdentifier>{e389b5fa-1af3-4cf2-8c77-ec9bf7db3173}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Importer\ObjImporter.h">
