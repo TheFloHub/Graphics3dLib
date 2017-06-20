@@ -4,7 +4,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 G3d::DefaultDepthMaterial::DefaultDepthMaterial() :
-	Material(ShaderManager::GetInstance().getDefaultDepth()),
+	Material(ShaderManager::getInstance().getDefaultDepth()),
 	mMvpMatrixLoc(0)
 {
 	mpShader->use();

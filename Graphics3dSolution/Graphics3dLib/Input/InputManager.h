@@ -134,8 +134,10 @@ namespace G3d
 	private:
 		
 		InputManager();
-		InputManager(InputManager const&)/*=delete*/;
-		InputManager& operator=(InputManager const&)/*=delete*/;
+
+		InputManager(InputManager const&) = delete;
+
+		InputManager& operator=(InputManager const&) = delete;
 
 		static const size_t MAX_KEY_ID;
 

@@ -7,8 +7,8 @@
 #include <glm/gtc/type_ptr.hpp>
 
 G3d::TerrainDepthMaterial::TerrainDepthMaterial() :
-	Material(ShaderManager::GetInstance().getTerrainDepth()),
-	mpHeightMap(TextureManager::GetInstance().getRGB255()), // TODO: Luminence0 ?
+	Material(ShaderManager::getInstance().getTerrainDepth()),
+	mpHeightMap(TextureManager::getInstance().getRGB255()), // TODO: Luminence0 ?
 	mMvpMatrixLoc(0)
 {
 	mpShader->use();

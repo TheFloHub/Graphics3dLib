@@ -9,7 +9,7 @@
 
 G3d::CameraController::CameraController() : 
 Component(),
-mMoveSpeed(400.0f),
+mMoveSpeed(1.0f),
 mRotationSpeed(5.0f)
 {
 
@@ -33,11 +33,11 @@ void G3d::CameraController::update(double deltaTime)
 {
 	if (InputManager::getInstance().getKeyDown(KEY_E))
 	{
-		mMoveSpeed += 100.0;
+		mMoveSpeed += 1.0;
 	}
 	if (InputManager::getInstance().getKeyDown(KEY_Q))
 	{
-		mMoveSpeed -= 100.0;
+		mMoveSpeed -= 1.0;
 	}
 
 	Transform& transform = *(mpSceneObject->getTransform());

@@ -37,9 +37,9 @@ void G3d::ShadowMapPass::render(Light const* pLight, std::vector<SceneObject con
 	glClear(GL_DEPTH_BUFFER_BIT);
 
 	glm::mat4 modelViewMatrix;
-	glm::mat4 projectionMatrix = glm::ortho(-510.0f, 510.0f, -515.0f, 515.0f, -515.0f, 515.0f);
+	glm::mat4 projectionMatrix = glm::ortho(-20.0f, 20.0f, -20.0f, 20.0f, -20.0f, 20.0f);
 	glm::mat4 modelViewProjectionMatrix;
-	glCullFace(GL_FRONT);
+	//glCullFace(GL_FRONT);
 	for (std::vector<SceneObject const*>::const_iterator objectIter = sceneObjects.cbegin();
 		objectIter != sceneObjects.cend(); ++objectIter)
 	{
@@ -60,7 +60,7 @@ void G3d::ShadowMapPass::render(Light const* pLight, std::vector<SceneObject con
 		//glFrontFace(GL_CCW);
 		//(*objectIter)->RenderDepth();
 	}
-	glCullFace(GL_BACK);
+	//glCullFace(GL_BACK);
 }
 
 

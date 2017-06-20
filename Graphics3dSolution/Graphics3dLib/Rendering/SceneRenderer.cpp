@@ -69,7 +69,7 @@ void G3d::SceneRenderer::render(SceneObject const* pRoot)
 
 	 // 2. Lighting Pass: calculate lighting by iterating over a screen filled quad pixel-by-pixel using the gbuffer's content.
 	
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	glBindFramebuffer(GL_FRAMEBUFFER, 0); 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	for (std::vector<Light const*>::const_iterator lightIter=lights.cbegin();
 		lightIter!=lights.cend(); ++lightIter)

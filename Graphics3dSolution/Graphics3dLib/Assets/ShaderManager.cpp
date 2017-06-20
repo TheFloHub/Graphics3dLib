@@ -15,7 +15,7 @@
 //#include "resources/shader/Terrain_vert.h"
 //#include "resources/shader/Terrain_frag.h"
 
-G3d::ShaderManager& G3d::ShaderManager::GetInstance()
+G3d::ShaderManager& G3d::ShaderManager::getInstance()
 {
 	static ShaderManager instance;
 	return instance;

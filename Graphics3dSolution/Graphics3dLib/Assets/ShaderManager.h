@@ -18,7 +18,7 @@ namespace G3d
 	{
 	public:
 
-		static ShaderManager& GetInstance();
+		static ShaderManager & getInstance();
 
 		~ShaderManager();
 

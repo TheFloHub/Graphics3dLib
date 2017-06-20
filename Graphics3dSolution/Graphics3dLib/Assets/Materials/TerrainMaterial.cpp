@@ -7,9 +7,9 @@
 #include <glm/gtc/type_ptr.hpp>
 
 G3d::TerrainMaterial::TerrainMaterial() :
-	Material(ShaderManager::GetInstance().getTerrain()),
-	mpHeightMap(TextureManager::GetInstance().getRGB255()), // TODO: Luminence0 ?
-	mpNoise(TextureManager::GetInstance().getTerrainNoise()),
+	Material(ShaderManager::getInstance().getTerrain()),
+	mpHeightMap(TextureManager::getInstance().getRGB255()), // TODO: Luminence0 ?
+	mpNoise(TextureManager::getInstance().getTerrainNoise()),
 	mMvpMatrixLoc(0),
 	mNormalMatrixLoc(0)
 {

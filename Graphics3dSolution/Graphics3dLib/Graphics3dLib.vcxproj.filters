@@ -92,12 +92,6 @@
     <ClInclude Include="Assets\Materials\SpecularMaterial.h">
       <Filter>Assets\Materials</Filter>
     </ClInclude>
-    <ClInclude Include="Assets\Materials\TerrainDepthMaterial.h">
-      <Filter>Assets\Materials</Filter>
-    </ClInclude>
-    <ClInclude Include="Assets\Materials\TerrainMaterial.h">
-      <Filter>Assets\Materials</Filter>
-    </ClInclude>
     <ClInclude Include="Input\InputManager.h">
       <Filter>Input</Filter>
     </ClInclude>
@@ -177,12 +171,6 @@
       <Filter>Assets\Materials</Filter>
     </ClCompile>
     <ClCompile Include="Assets\Materials\SpecularMaterial.cpp">
-      <Filter>Assets\Materials</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\Materials\TerrainDepthMaterial.cpp">
-      <Filter>Assets\Materials</Filter>
-    </ClCompile>
-    <ClCompile Include="Assets\Materials\TerrainMaterial.cpp">
       <Filter>Assets\Materials</Filter>
     </ClCompile>
     <ClCompile Include="Input\InputManager.cpp">

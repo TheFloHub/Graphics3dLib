@@ -143,8 +143,6 @@
     <ClInclude Include="Assets\Materials\DefaultDepthMaterial.h" />
     <ClInclude Include="Assets\Materials\DiffuseMaterial.h" />
     <ClInclude Include="Assets\Materials\SpecularMaterial.h" />
-    <ClInclude Include="Assets\Materials\TerrainDepthMaterial.h" />
-    <ClInclude Include="Assets\Materials\TerrainMaterial.h" />
     <ClInclude Include="Assets\Mesh.h" />
     <ClInclude Include="Assets\MeshManager.h" />
     <ClInclude Include="Assets\Shader.h" />
@@ -175,8 +173,6 @@
     <ClCompile Include="Assets\Materials\DefaultDepthMaterial.cpp" />
     <ClCompile Include="Assets\Materials\DiffuseMaterial.cpp" />
     <ClCompile Include="Assets\Materials\SpecularMaterial.cpp" />
-    <ClCompile Include="Assets\Materials\TerrainDepthMaterial.cpp" />
-    <ClCompile Include="Assets\Materials\TerrainMaterial.cpp" />
     <ClCompile Include="Assets\Mesh.cpp" />
     <ClCompile Include="Assets\MeshManager.cpp" />
     <ClCompile Include="Assets\Shader.cpp" />

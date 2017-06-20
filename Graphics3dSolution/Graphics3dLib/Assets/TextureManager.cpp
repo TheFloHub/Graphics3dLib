@@ -3,7 +3,7 @@
 #include <glm/gtc/noise.hpp>
 #include <random>
 
-G3d::TextureManager& G3d::TextureManager::GetInstance()
+G3d::TextureManager& G3d::TextureManager::getInstance()
 {
 	static TextureManager instance;
 	return instance;

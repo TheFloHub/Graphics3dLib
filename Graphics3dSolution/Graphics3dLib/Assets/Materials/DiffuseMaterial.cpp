@@ -7,13 +7,13 @@
 #include <glm/gtc/type_ptr.hpp>
 
 G3d::DiffuseMaterial::DiffuseMaterial() : 
-Material(ShaderManager::GetInstance().getDiffuse()),
+Material(ShaderManager::getInstance().getDiffuse()),
 mRed(1.0f),
 mGreen(1.0f),
 mBlue(1.0f),
 mTilingX(1.0f),
 mTilingY(1.0f),
-mpTexture(TextureManager::GetInstance().getRGB255()),
+mpTexture(TextureManager::getInstance().getRGB255()),
 mMvpMatrixLoc(0),
 mNormalMatrixLoc(0),
 mDiffuseColorLoc(0),

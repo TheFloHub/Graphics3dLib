@@ -7,14 +7,14 @@
 #include <glm/gtc/type_ptr.hpp>
 
 G3d::SpecularMaterial::SpecularMaterial() : 
-Material(ShaderManager::GetInstance().getSpecular()),
+Material(ShaderManager::getInstance().getSpecular()),
 mDiffuseRed(1.0f),
 mDiffuseGreen(1.0f),
 mDiffuseBlue(1.0f),
 mTilingX(1.0f),
 mTilingY(1.0f),
 mShininess(32.0f),
-mpTexture(TextureManager::GetInstance().getRGBA255()),
+mpTexture(TextureManager::getInstance().getRGBA255()),
 mMvpMatrixLoc(0),
 mNormalMatrixLoc(0),
 mDiffuseColorLoc(0),

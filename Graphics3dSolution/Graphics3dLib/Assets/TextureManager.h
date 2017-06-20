@@ -18,7 +18,7 @@ namespace G3d
 	{
 	public:
 
-		static TextureManager& GetInstance();
+		static TextureManager& getInstance();
 
 		~TextureManager();
 

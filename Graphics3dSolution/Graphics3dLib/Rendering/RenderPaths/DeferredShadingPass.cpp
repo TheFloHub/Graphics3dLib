@@ -16,7 +16,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 G3d::DeferredShadingPass::DeferredShadingPass(unsigned int width, unsigned int height) :
-RenderPath(ShaderManager::GetInstance().get("DeferredLight"), nullptr),
+RenderPath(ShaderManager::getInstance().get("DeferredLight"), nullptr),
 mWidth(width),
 mHeight(height),
 mpInputDepth(),
@@ -79,7 +79,7 @@ void G3d::DeferredShadingPass::render(Camera const* pCamera, Light const* pLight
 	glm::mat3 viewRotationMatrix = glm::mat3(m180Rotation)*pCamera->getSceneObject()->getTransform()->getWorldToLocalRotationMatrix();
 
 	glm::mat4 cameraToLightTrafo = 
-		glm::ortho(-510.0f, 510.0f, -515.0f, 515.0f, -515.0f, 515.0f) *
+		glm::ortho(-20.0f, 20.0f, -20.0f, 20.0f, -20.0f, 20.0f) *
 		m180Rotation * pLight->getSceneObject()->getTransform()->getWorldToLocalMatrix() * pCamera->getSceneObject()->getTransform()->getLocalToWorldMatrix()*m180Rotation;
 
 	glUniform1f(mNearPlaneLoc, pCamera->getNearPlane());

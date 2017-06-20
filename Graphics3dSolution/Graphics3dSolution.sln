@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphics3dLib", "Graphics3dLib\Graphics3dLib.vcxproj", "{174B7E2C-9F50-42F3-A407-2646672EB688}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphics3dLibTest", "Graphics3dLibTest\Graphics3dLibTest.vcxproj", "{0170DB2B-96E5-46C0-B8CB-5AB5143ECDE2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{174B7E2C-9F50-42F3-A407-2646672EB688}.Release|x64.Build.0 = Release|x64
 		{174B7E2C-9F50-42F3-A407-2646672EB688}.Release|x86.ActiveCfg = Release|Win32
 		{174B7E2C-9F50-42F3-A407-2646672EB688}.Release|x86.Build.0 = Release|Win32
+		{0170DB2B-96E5-46C0-B8CB-5AB5143ECDE2}.Debug|x64.ActiveCfg = Debug|x64
+		{0170DB2B-96E5-46C0-B8CB-5AB5143ECDE2}.Debug|x64.Build.0 = Debug|x64
+		{0170DB2B-96E5-46C0-B8CB-5AB5143ECDE2}.Debug|x86.ActiveCfg = Debug|Win32
+		{0170DB2B-96E5-46C0-B8CB-5AB5143ECDE2}.Debug|x86.Build.0 = Debug|Win32
+		{0170DB2B-96E5-46C0-B8CB-5AB5143ECDE2}.Release|x64.ActiveCfg = Release|x64
+		{0170DB2B-96E5-46C0-B8CB-5AB5143ECDE2}.Release|x64.Build.0 = Release|x64
+		{0170DB2B-96E5-46C0-B8CB-5AB5143ECDE2}.Release|x86.ActiveCfg = Release|Win32
+		{0170DB2B-96E5-46C0-B8CB-5AB5143ECDE2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
