@@ -29,6 +29,8 @@ namespace G3d
 
 		ShaderPtr get(std::string const& shaderName) const;
 
+		ShaderPtr getPBRMaterial() const;
+
 		ShaderPtr getDiffuse() const;
 
 		ShaderPtr getSpecular() const;
@@ -41,7 +43,7 @@ namespace G3d
 
 		ShaderPtr getTerrainShadowMap() const;
 
-		void initStandardShader();
+		bool initStandardShader();
 
 	private:
 		

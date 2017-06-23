@@ -113,6 +113,12 @@
     <ClInclude Include="Rendering\RenderPaths\ShadowMapPath.h">
       <Filter>Rendering\Renderpaths</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\Materials\PBRMaterial.h">
+      <Filter>Assets\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Rendering\RenderPaths\FinalShadingPass.h">
+      <Filter>Rendering\Renderpaths</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Importer\ObjImporter.cpp">
@@ -192,6 +198,12 @@
       <Filter>Rendering\Renderpaths</Filter>
     </ClCompile>
     <ClCompile Include="Rendering\RenderPaths\ShadowMapPath.cpp">
+      <Filter>Rendering\Renderpaths</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Materials\PBRMaterial.cpp">
+      <Filter>Assets\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Rendering\RenderPaths\FinalShadingPass.cpp">
       <Filter>Rendering\Renderpaths</Filter>
     </ClCompile>
   </ItemGroup>

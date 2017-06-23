@@ -7,6 +7,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphics3dLib", "Graphics3d
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Graphics3dLibTest", "Graphics3dLibTest\Graphics3dLibTest.vcxproj", "{0170DB2B-96E5-46C0-B8CB-5AB5143ECDE2}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EF53DBDD-7D0B-4533-BD66-18697F776717}"
+	ProjectSection(SolutionItems) = preProject
+		TODOS.txt = TODOS.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

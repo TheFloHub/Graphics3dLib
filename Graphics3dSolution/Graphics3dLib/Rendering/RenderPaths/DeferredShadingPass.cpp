@@ -16,7 +16,13 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 G3d::DeferredShadingPass::DeferredShadingPass(unsigned int width, unsigned int height) :
-RenderPath(ShaderManager::getInstance().get("DeferredLight"), nullptr),
+RenderPath(
+	ShaderManager::getInstance().get("DeferredLight"), 
+	new FrameBufferObject(
+		width,
+		height,
+		0,	// no depth buffer 
+		GL_RGB16F)),
 mWidth(width),
 mHeight(height),
 mpInputDepth(),
@@ -54,9 +60,7 @@ G3d::DeferredShadingPass::~DeferredShadingPass()
 
 void G3d::DeferredShadingPass::render(Camera const* pCamera, Light const* pLight)
 {
-	//glEnable(GL_FRAMEBUFFER_SRGB);
-
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
+	mpFrameBuffer->use();
 	glViewport(0, 0, mWidth, mHeight);
 	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	glDisable(GL_DEPTH_TEST);
@@ -106,8 +110,6 @@ void G3d::DeferredShadingPass::render(Camera const* pCamera, Light const* pLight
 	glDepthMask(GL_TRUE);
 	glDisable(GL_BLEND);
 	glEnable(GL_DEPTH_TEST);
-
-	//glDisable(GL_FRAMEBUFFER_SRGB);
 }
 
 void G3d::DeferredShadingPass::setInputDepth(TextureCPtr pTexture)
@@ -128,4 +130,16 @@ void G3d::DeferredShadingPass::setInputAlbedo(TextureCPtr pTexture)
 void G3d::DeferredShadingPass::setInputShadowMap(TextureCPtr pTexture)
 {
 	mpInputShadowMap = pTexture;
+}
+
+G3d::TexturePtr G3d::DeferredShadingPass::getOutputBuffer()
+{
+	return mpFrameBuffer->getTexture(0);
+}
+
+void G3d::DeferredShadingPass::clear()
+{
+	mpFrameBuffer->use();
+	glViewport(0, 0, mWidth, mHeight);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }

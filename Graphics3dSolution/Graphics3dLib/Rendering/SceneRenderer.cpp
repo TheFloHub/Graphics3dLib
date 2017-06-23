@@ -20,13 +20,14 @@ mWidth(width),
 mHeight(height),
 mGraphicsBufferPath(width, height),
 mShadowMapPath(1024, 1024),
-mDeferredShadingPath(width, height)
+mDeferredShadingPath(width, height),
+mFinalShadingPass(width, height)
 {
 	mDeferredShadingPath.setInputDepth(mGraphicsBufferPath.getDepthBuffer());
 	mDeferredShadingPath.setInputNormals(mGraphicsBufferPath.getNormalBuffer());
 	mDeferredShadingPath.setInputAlbedo(mGraphicsBufferPath.getAlbedoBuffer());
-
 	mDeferredShadingPath.setInputShadowMap(mShadowMapPath.getDepthBuffer());
+	mFinalShadingPass.setInput(mDeferredShadingPath.getOutputBuffer());
 }
 
 G3d::SceneRenderer::~SceneRenderer()
@@ -58,25 +59,18 @@ void G3d::SceneRenderer::render(SceneObject const* pRoot)
 	// 1. Geometry Pass: render scene's geometry/color data into gbuffer
 	mGraphicsBufferPath.render(pCamera, sceneObjects);
 
-	// 2. Shadow Pass:
-
-	// render depth map in tempShadowMap
-	// render tempShadowMap in tempTerrainShadowMap in terrain coordiantes
-	// blur tempTerrainShadowMap
-	// do lighting with tempTerrainShadowMap and set transformation to the terrain NOT to the light
-	// do a heightmap pass that needs normals, ??height??, tempTerrainShadowMap, 
-
-
-	 // 2. Lighting Pass: calculate lighting by iterating over a screen filled quad pixel-by-pixel using the gbuffer's content.
-	
-	glBindFramebuffer(GL_FRAMEBUFFER, 0); 
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	// 2. Lighting Pass: calculate lighting by iterating over a screen filled quad pixel-by-pixel using the gbuffer's content.
+	//glBindFramebuffer(GL_FRAMEBUFFER, 0); 
+	//glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+	mDeferredShadingPath.clear();
 	for (std::vector<Light const*>::const_iterator lightIter=lights.cbegin();
 		lightIter!=lights.cend(); ++lightIter)
 	{
 		mShadowMapPath.render(*lightIter, sceneObjects);
 		mDeferredShadingPath.render(pCamera, *lightIter);
 	}
+
+	mFinalShadingPass.render();
 }
 
 void G3d::SceneRenderer::traverseGraph(

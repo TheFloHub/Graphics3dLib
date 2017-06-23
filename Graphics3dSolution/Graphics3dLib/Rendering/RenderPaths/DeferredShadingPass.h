@@ -33,6 +33,10 @@ namespace G3d
 		void setInputAlbedo(TextureCPtr pTexture);
 
 		void setInputShadowMap(TextureCPtr pTexture);
+
+		TexturePtr getOutputBuffer();
+
+		void clear();
 		
 	protected:
 		

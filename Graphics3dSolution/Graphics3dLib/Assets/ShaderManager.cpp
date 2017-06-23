@@ -47,6 +47,11 @@ G3d::ShaderPtr G3d::ShaderManager::loadFromFile(
 	std::ifstream fragmentShaderFile(fragmentShaderFileName);
 	std::string fragmentShader((std::istreambuf_iterator<char>(fragmentShaderFile)), std::istreambuf_iterator<char>());
 
+	if (vertexShader.empty() || fragmentShader.empty())
+	{
+		return pShader;
+	}
+
 	return (mShaderMap.insert(std::make_pair(shaderName, ShaderPtr(new Shader(vertexShader, fragmentShader))))).first->second;
 }
 
@@ -58,6 +63,11 @@ G3d::ShaderPtr G3d::ShaderManager::get(std::string const& shaderName) const
 		return iter->second;
 	}
 	return ShaderPtr();
+}
+
+G3d::ShaderPtr G3d::ShaderManager::getPBRMaterial() const
+{
+	return get("PBRMaterial"); 
 }
 
 G3d::ShaderPtr G3d::ShaderManager::getDiffuse() const
@@ -90,30 +100,35 @@ G3d::ShaderPtr G3d::ShaderManager::getTerrainShadowMap() const
 	return get("TerrainShadowMap");
 }
 
-void G3d::ShaderManager::initStandardShader()
+bool G3d::ShaderManager::initStandardShader()
 {
 	std::string baseHome("D:\\Eigene Dokumente\\Visual Studio 2015\\Projects\\Graphics3dLibSolution\\Graphics3dLib\\resources\\shader\\");
-	std::string baseWork("D:\\VSProjects\\Graphics3dLibSolution\\Graphics3dLib\\resources\\shader\\");
+	std::string baseWork("D:\\GitHubProjects\\Graphics3dLib\\Graphics3dSolution\\Graphics3dLib\\Resources\\Shader\\");
 
 	std::string base = baseWork;
 	
 	// TODO: make Visual Studio resource files or so
-	loadFromFile("Diffuse", base + "Diffuse.vert", base + "Diffuse.frag");
+	if (!loadFromFile("Diffuse", base + "Diffuse.vert", base + "Diffuse.frag"))
+		return false;
 
-	loadFromFile("Specular", base + "Specular.vert", base + "Specular.frag");
+	if (!loadFromFile("Specular", base + "Specular.vert", base + "Specular.frag"))
+		return false;
 
-	loadFromFile("Terrain", base + "Terrain.vert", base + "Terrain.frag");
+	if (!loadFromFile("DeferredLight", base + "DeferredLight.vert", base + "DeferredLight.frag"))
+		return false;
 
-	loadFromFile("DeferredLight", base + "DeferredLight.vert", base + "DeferredLight.frag");
+	if (!loadFromFile("DefaultDepth", base + "DefaultDepth.vert", base + "DefaultDepth.frag"))
+		return false;
 
-	loadFromFile("DefaultDepth", base + "DefaultDepth.vert", base + "DefaultDepth.frag");
+	if (!loadFromFile("PBRMaterial", base + "PBRMaterial.vert", base + "PBRMaterial.frag"))
+		return false;
 
-	loadFromFile("TerrainDepth", base + "TerrainDepth.vert", base + "TerrainDepth.frag");
-
-	loadFromFile("TerrainShadowMap", base + "TerrainShadowMap.vert", base + "TerrainShadowMap.frag");
+	if (!loadFromFile("FinalShading", base + "FinalShading.vert", base + "FinalShading.frag"))
+		return false;
 
 	//mShaderMap.insert(std::make_pair("DeferredLight", ShaderPtr(new Shader(DeferredLight_vert, DeferredLight_frag))));
 	//mShaderMap.insert(std::make_pair("Diffuse", ShaderPtr(new Shader(Diffuse_vert, Diffuse_frag))));
 	//mShaderMap.insert(std::make_pair("Specular", ShaderPtr(new Shader(Specular_vert, Specular_frag))));
 	//mShaderMap.insert(std::make_pair("Terrain", ShaderPtr(new Shader(Terrain_vert, Terrain_frag))));
+	return true;
 }

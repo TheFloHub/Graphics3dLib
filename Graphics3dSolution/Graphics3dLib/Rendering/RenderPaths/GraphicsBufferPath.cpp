@@ -16,8 +16,8 @@ RenderPath(
 		width, 
 		height, 
 		GL_DEPTH_COMPONENT24,	// depth buffer 
-		GL_RGB10_A2,			// normals, A = occlusion?
-		GL_RGBA8))				// albedo, A = shininess
+		GL_RGBA16,				// normals, A = roughness
+		GL_RGBA8))				// albedo, A = metallic
 {
 	
 }

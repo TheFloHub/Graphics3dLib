@@ -12,6 +12,7 @@
 #include <Graphics3dLib/Rendering/RenderPaths/GraphicsBufferPath.h>
 #include <Graphics3dLib/Rendering/RenderPaths/ShadowMapPath.h>
 #include <Graphics3dLib/Rendering/RenderPaths/DeferredShadingPass.h>
+#include <Graphics3dLib/Rendering/RenderPaths/FinalShadingPass.h>
 #include "glew.h"
 #include <glm/glm.hpp>
 #include <vector>
@@ -60,6 +61,9 @@ namespace G3d
 		
 		// Deferred Shading Pass
 		DeferredShadingPass mDeferredShadingPath;
+
+		// Final Shading Pass (ambient / HDR / Gamma correction)
+		FinalShadingPass mFinalShadingPass;
 
 	};
 

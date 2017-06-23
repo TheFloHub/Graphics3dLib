@@ -1,0 +1,34 @@
+- - point light richtig mit radius und light volume
+	https://learnopengl.com/#!Lighting/Light-casters
+	http://www.ogre3d.org/tikiwiki/tiki-index.php?page=-Point+Light+Attenuation
+	https://learnopengl.com/#!Advanced-Lighting/Deferred-Shading
+
+- FBO class?
+
+- Uniform Buffer Objects for Shaders???
+	https://learnopengl.com/#!Advanced-OpenGL/Advanced-GLSL
+
+- Geometry Shader
+	https://learnopengl.com/#!Advanced-OpenGL/Geometry-Shader
+
+- Point Light Shadows as CubeMaps (very interesting)
+	https://learnopengl.com/#!Advanced-Lighting/Shadows/Point-Shadows
+
+- SSAO
+	https://learnopengl.com/#!Advanced-Lighting/SSAO
+
+
+- material aus light shader und mesh aus quad
+- look at function
+- normal mapping -> tangent space
+- tex coords müssen immer in mesh vorhanden sein. tangent space optional
+- transparenz
+- input manager
+- In Shader ein Material struct machen 
+	https://learnopengl.com/#!Lighting/Materials
+
+
+- generische materialien? nur liste von namen und typ übergeben. der rest passiert allein? globals sind immer gleich!?
+
+- fü shader auch alle set typen implementieren
+- in Material BaseClass kann man die globals setzen!!! also MVP und NM mit currentRenderCam! und eigenes Object!!!!

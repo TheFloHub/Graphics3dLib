@@ -5,8 +5,7 @@
 #include <Graphics3dLib/Assets/ShaderManager.h>
 #include <Graphics3dLib/Assets/Texture.h>
 #include <Graphics3dLib/Assets/TextureManager.h>
-#include <Graphics3dLib/Assets/Materials/DiffuseMaterial.h>
-#include <Graphics3dLib/Assets/Materials/SpecularMaterial.h>
+#include <Graphics3dLib/Assets/Materials/PBRMaterial.h>
 #include <Graphics3dLib/Assets/MaterialManager.h>
 #include <Graphics3dLib/Input/InputManager.h>
 
@@ -72,21 +71,68 @@ bool InitGL(int width, int height)
 		return false;
 	}
 
-	// materials
-	DiffuseMaterialPtr pDiffuseMaterial = MaterialManager::getInstance().create<DiffuseMaterial>("Diffuse");
-	pDiffuseMaterial->setDiffuseColor(1.0f, 0.5f, 0.15f);
-
-	SpecularMaterialPtr pSpecularMaterial = MaterialManager::getInstance().create<SpecularMaterial>("Specular");
-	pSpecularMaterial->setShininess(80.0);
 
 	// graph
 	pRoot = std::unique_ptr<SceneObject>(new SceneObject("Root"));
 
+	// camera
+	SceneObject* pCameraObj = new SceneObject("Camera");
+	pCamera = new Camera(width, height, 0.1f, 30.0f, 80.0f);
+	pCameraObj->addComponent(pCamera);
+	pCameraObj->addComponent(new CameraController);
+	pCameraObj->getTransform()->setPosition(glm::vec3(0.0f, 0.0f, -10.0f));
+	//pCameraObj->getTransform()->setRotation(10.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+	pRoot->addChild(pCameraObj);
 
-	SceneObject* pSphere = new SceneObject("Sphere");
-	pSphere->addComponent(new MeshRenderer(pMeshSphere, pDiffuseMaterial));
-	pSphere->getTransform()->setPosition(glm::vec3(0.0f, 2.0f, 5.0f));
-	//pSphere->GetTransform()->SetScale(glm::vec3(60.0f, 60.0f, 60.0f));
+	// lights
+	float intensity = 300.0f;
+	SceneObject* pPointLight1 = new SceneObject("PointLight1");
+	pPointLight1->addComponent(new Light(Light::POINT));
+	pPointLight1->getTransform()->setPosition(glm::vec3(-10.0f, -10.0f, -10.0f));
+	pPointLight1->getComponent<Light>()->setIntensity(intensity);
+	pRoot->addChild(pPointLight1);
+
+	SceneObject* pPointLight2 = new SceneObject("PointLight2");
+	pPointLight2->addComponent(new Light(Light::POINT));
+	pPointLight2->getTransform()->setPosition(glm::vec3( 10.0f, -10.0f, -10.0f));
+	pPointLight2->getComponent<Light>()->setIntensity(intensity);
+	pRoot->addChild(pPointLight2);
+
+	SceneObject* pPointLight3 = new SceneObject("PointLight3");
+	pPointLight3->addComponent(new Light(Light::POINT));
+	pPointLight3->getTransform()->setPosition(glm::vec3(-10.0f,  10.0f, -10.0f));
+	pPointLight3->getComponent<Light>()->setIntensity(intensity);
+	pRoot->addChild(pPointLight3);
+
+	SceneObject* pPointLight4 = new SceneObject("PointLight4");
+	pPointLight4->addComponent(new Light(Light::POINT));
+	pPointLight4->getTransform()->setPosition(glm::vec3( 10.0f,  10.0f, -10.0f));
+	pPointLight4->getComponent<Light>()->setIntensity(intensity);
+	pRoot->addChild(pPointLight4);
+
+
+	// spheres
+	int numRows = 7;
+	int numColumns = 7;
+	float spacing = 2.5;
+
+	for (int row = 0; row < numRows; ++row)
+	{
+		for (int col = 0; col < numColumns; ++col)
+		{
+			PBRMaterialPtr pMaterial = PBRMaterialPtr(new PBRMaterial);
+			pMaterial->setAlbedo(0.5f, 0.0f, 0.0f);
+			pMaterial->setMetallic((float)row/(float)numRows);
+			pMaterial->setRoughness(glm::clamp((float)col/(float)numColumns, 0.05f, 1.0f));
+
+			SceneObject* pSphere = new SceneObject("Sphere");
+			pSphere->addComponent(new MeshRenderer(pMeshSphere, pMaterial));
+			pSphere->getTransform()->setPosition(glm::vec3((float)(col - (numColumns / 2)) * spacing, (float)(row - (numRows / 2)) * spacing, 0.0f));
+			
+			pRoot->addChild(pSphere);
+		}
+	}
+
 
 	//SceneObject* pTeddy = new SceneObject("Teddy");
 	//pTeddy->AddComponent(new MeshRenderer(pMeshTeddy, pDiffuseMaterial));
@@ -94,23 +140,18 @@ bool InitGL(int width, int height)
 	//pTeddy->GetTransform()->SetScale(glm::vec3(2.0f, 2.0f, 2.0f));
 	//pTeddy->GetTransform()->SetRotation(195.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 
-	SceneObject* pPlane = new SceneObject("Plane");
-	pPlane->addComponent(new MeshRenderer(pMeshPlane, pSpecularMaterial));
+	//SceneObject* pPlane = new SceneObject("Plane");
+	//pPlane->addComponent(new MeshRenderer(pMeshPlane, pSpecularMaterial));
 	//pPlane->getTransform()->SetPosition(glm::vec3(2.0f, 0.0f, 4.0f));
-	pPlane->getTransform()->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
+	//pPlane->getTransform()->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
 	//pPlane->getTransform()->SetRotation(180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
 
-	SceneObject* pCameraObj = new SceneObject("Camera");
-	pCamera = new Camera(width, height, 0.1f, 100.0f, 90.0f);
-	pCameraObj->addComponent(pCamera);
-	pCameraObj->addComponent(new CameraController);
-	pCameraObj->getTransform()->setPosition(glm::vec3(0.0f, 2.0f, -2.0f));
-	pCameraObj->getTransform()->setRotation(10.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 
-	SceneObject* pDirectionalLight = new SceneObject("DirectionalLight");
-	pDirectionalLight->addComponent(new Light(Light::DIRECTIONAL));
-	pDirectionalLight->getComponent<Light>()->setIntensity(1.0f);
-	pDirectionalLight->getTransform()->rotate(135.0f, glm::vec3(1.0f, 0.0f, 0.0f));
+
+	//SceneObject* pDirectionalLight = new SceneObject("DirectionalLight");
+	//pDirectionalLight->addComponent(new Light(Light::DIRECTIONAL));
+	//pDirectionalLight->getComponent<Light>()->setIntensity(1.0f);
+	//pDirectionalLight->getTransform()->rotate(135.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 
 	//SceneObject* pDirectionalLight2 = new SceneObject("DirectionalLight");
 	//pDirectionalLight2->AddComponent(new Light(Light::DIRECTIONAL));
@@ -126,11 +167,10 @@ bool InitGL(int width, int height)
 	//pPointLight1->GetComponent<Light>()->SetIntensity(6.0f);
 
 	//pRoot->AddChild(pTerrain);
-	pRoot->addChild(pSphere);
+	//pRoot->addChild(pSphere);
 	//pRoot->AddChild(pTeddy);
-	pRoot->addChild(pPlane);
-	pRoot->addChild(pCameraObj);
-	pRoot->addChild(pDirectionalLight);
+	//pRoot->addChild(pPlane);
+	//pRoot->addChild(pDirectionalLight);
 	//pRoot->AddChild(pDirectionalLight2);
 	//pRoot->AddChild(pPointLight1);
 
