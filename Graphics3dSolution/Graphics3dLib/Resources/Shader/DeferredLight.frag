@@ -77,8 +77,8 @@ float ShadowCalculation(vec3 fragPosCameraSpace, vec3 normal, vec3 lightDir)
 // ----------------------------------------------------------------------------
 float DistributionGGX(vec3 N, vec3 H, float roughness)
 {
-    float a = roughness*roughness;
-    float a2 = a*a;
+    //float a = roughness*roughness;
+    float a2 = roughness*roughness;
     float NdotH = max(dot(N, H), 0.0);
     float NdotH2 = NdotH*NdotH;
 
@@ -121,21 +121,21 @@ void main()
 	// retrieve data from gbuffer								
 	vec4 gNormalData = texture(gNormal, TexCoords).rgba;
 	vec4 gAlbedoData = texture(gAlbedo, TexCoords).rgba;
-	vec3 N = 2.0f * gNormalData.rgb - 1.0f;	
-	float roughness = gNormalData.a;										
-	vec3 albedo = gAlbedoData.rgb;												
+	vec3 N = 2.0f * gNormalData.rgb - 1.0;	
+	float roughness = gNormalData.a;	
+	vec3 albedo = gAlbedoData.rgb;	// pow(gAlbedoData.rgb, 2.2) because albedo in sRGB space???									
 	float metallic = gAlbedoData.a;													
 																									
 	// position from linear depth										
 	float depth = -LinearizeDepth(texture(gDepth, TexCoords).r);																	
 	vec3 nRay = normalize(Ray);																		
-	vec3 vertexPosition = vec3(0.0f, 0.0f, depth);													
+	vec3 vertexPosition = vec3(0.0, 0.0, depth);													
 	vertexPosition.xy = nRay.xy * vertexPosition.z / nRay.z;	
 	vec3 V = normalize(-vertexPosition); // oder einfach -nRay???
 	
 	// light direction
-	vec3 L = vec3(0.0f, 0.0f, 0.0f);															
-	float attenuation = 1.0f;																																							
+	vec3 L = vec3(0.0, 0.0, 0.0);															
+	float attenuation = 1.0;																																							
 	if (lightType == 0) 	// directional light																			
 	{																								
 		L = -lightPosDir; 	// light direction must come from object from now on  																	
@@ -143,7 +143,7 @@ void main()
 	else 					// point light																							
 	{																								
 		L = lightPosDir - vertexPosition;													
-		attenuation = 1/dot(L, L);													
+		attenuation = 1.0/dot(L, L);													
 		L = normalize(L);																
 	}	
 	
@@ -162,7 +162,7 @@ void main()
 	vec3 F    = fresnelSchlick(max(dot(H, V), 0.0), F0);
 
 	vec3 nominator    = NDF * G * F; 
-	float denominator = 4 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0) + 0.001; // 0.001 to prevent divide by zero.
+	float denominator = 4.0 * max(dot(N, V), 0.0) * max(dot(N, L), 0.0) + 0.001; // 0.001 to prevent divide by zero.
 	vec3 specular = nominator / denominator;
 
 	// kS is equal to Fresnel

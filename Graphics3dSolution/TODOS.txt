@@ -32,3 +32,5 @@
 
 - fü shader auch alle set typen implementieren
 - in Material BaseClass kann man die globals setzen!!! also MVP und NM mit currentRenderCam! und eigenes Object!!!!
+
+- albedo textures gamma correct!
