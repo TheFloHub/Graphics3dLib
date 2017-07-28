@@ -2,8 +2,7 @@
 layout (location = 0) out vec4 gNormal;					
 layout (location = 1) out vec4 gAlbedo;					
 														
-in vec3 Normal;											
-in vec2 TexCoord;										
+in vec3 Normal;									
 														
 uniform vec3 albedo;								
 uniform float metallic;

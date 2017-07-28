@@ -1,7 +1,7 @@
 #include "Texture.h"
 #include <Graphics3dLib/GlInfo.h>
+#include <Graphics3dLib/Importer/stb_image.h>
 #include <glew.h>
-#include "SOIL.h"
 
 #include <iostream>
 
@@ -12,11 +12,11 @@ mWidth(0),
 mHeight(0),
 mInternalFormat(-1)
 {
-	// TODO: flip y coordinates
 	int width = 0;
 	int height = 0;
 	int channels = 0;
-	unsigned char* image = SOIL_load_image(textureFileName.c_str(), &width, &height, &channels, SOIL_LOAD_AUTO); 
+	stbi_set_flip_vertically_on_load(true);
+	unsigned char* image = stbi_load(textureFileName.c_str(), &width, &height, &channels, 0);
 	if (image != nullptr)
 	{
 		mWidth = (unsigned int)width;
@@ -54,9 +54,13 @@ mInternalFormat(-1)
 		CHECKGLERROR();
 		repeat();
 		highQuality();
-		SOIL_free_image_data(image);
 		glBindTexture(GL_TEXTURE_2D, 0);
 	}
+	else
+	{
+		std::cout << "Failed to load texture " << textureFileName.c_str() << std::endl;
+	}
+	stbi_image_free(image);
 }
 
 G3d::Texture::Texture(

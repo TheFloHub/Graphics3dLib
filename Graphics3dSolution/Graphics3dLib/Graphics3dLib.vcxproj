@@ -74,11 +74,11 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..;D:\Libs\glm-0.9.8.4;D:\Libs\glfw-3.2.1\include;D:\Libs\glew-2.0.0\include;D:\Libs\soil\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..;D:\Libs\glm-0.9.8.4;D:\Libs\glfw-3.2.1\include;D:\Libs\glew-2.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;soil.lib;glfw3dll.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>D:\Libs\glew-2.0.0\lib\v140\Win32\Release;D:\Libs\soil\lib\v140\Win32\Release;D:\Libs\glfw-3.2.1\lib-vc2015</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -87,15 +87,15 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..;D:\Libs\glm-0.9.8.4;D:\Libs\glfw-3.2.1\include;D:\Libs\glew-2.0.0\include;D:\Libs\soil\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..;D:\Libs\glm-0.9.8.4;D:\Libs\glfw-3.2.1\include;D:\Libs\glew-2.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>D:\Libs\glew-2.0.0\lib\Release\Win32;D:\Libs\soil\lib\v110\Win32\Release;D:\Libs\glfw-3.2.1\lib-vc2012</AdditionalLibraryDirectories>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>D:\Libs\glew-2.0.0\lib\v140\x64\Release;D:\Libs\soil\lib\v140\x64\Release;D:\Libs\glfw-3.2.1\lib\vc140\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;soil.lib;glfw3.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Libs\glew-2.0.0\lib\v140\x64\Release;D:\Libs\glfw-3.2.1\lib\vc140\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -105,7 +105,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..;D:\Libs\glm-0.9.8.4;D:\Libs\glfw-3.2.1\include;D:\Libs\glew-2.0.0\include;D:\Libs\soil\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..;D:\Libs\glm-0.9.8.4;D:\Libs\glfw-3.2.1\include;D:\Libs\glew-2.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>GLFW_INCLUDE_NONE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -113,7 +113,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;soil.lib;glfw3dll.lib</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3dll.lib</AdditionalDependencies>
       <AdditionalLibraryDirectories>D:\Libs\glew-2.0.0\lib\v140\Win32\Release;D:\Libs\soil\lib\v140\Win32\Release;D:\Libs\glfw-3.2.1\lib-vc2015</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
@@ -124,7 +124,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ProjectDir)\..;D:\Libs\glm-0.9.8.4;D:\Libs\glfw-3.2.1\include;D:\Libs\glew-2.0.0\include;D:\Libs\soil\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)\..;D:\Libs\glm-0.9.8.4;D:\Libs\glfw-3.2.1\include;D:\Libs\glew-2.0.0\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -133,8 +133,8 @@
       <AdditionalLibraryDirectories>D:\Libs\glew-2.0.0\lib\Release\Win32;D:\Libs\soil\lib\v110\Win32\Release;D:\Libs\glfw-3.2.1\lib-vc2012</AdditionalLibraryDirectories>
     </Link>
     <Lib>
-      <AdditionalLibraryDirectories>D:\Libs\glew-2.0.0\lib\v140\x64\Release;D:\Libs\soil\lib\v140\x64\Release;D:\Libs\glfw-3.2.1\lib\vc140\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;soil.lib;glfw3.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>D:\Libs\glew-2.0.0\lib\v140\x64\Release;D:\Libs\glfw-3.2.1\lib\vc140\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -143,6 +143,7 @@
     <ClInclude Include="Assets\Materials\DefaultDepthMaterial.h" />
     <ClInclude Include="Assets\Materials\DiffuseMaterial.h" />
     <ClInclude Include="Assets\Materials\PBRMaterial.h" />
+    <ClInclude Include="Assets\Materials\PBRTexturedMaterial.h" />
     <ClInclude Include="Assets\Materials\SpecularMaterial.h" />
     <ClInclude Include="Assets\Mesh.h" />
     <ClInclude Include="Assets\MeshManager.h" />
@@ -158,6 +159,7 @@
     <ClInclude Include="Components\Transform.h" />
     <ClInclude Include="GlInfo.h" />
     <ClInclude Include="Importer\ObjImporter.h" />
+    <ClInclude Include="Importer\stb_image.h" />
     <ClInclude Include="Input\InputManager.h" />
     <ClInclude Include="Rendering\FrameBufferObject.h" />
     <ClInclude Include="Rendering\RenderPath.h" />
@@ -175,6 +177,7 @@
     <ClCompile Include="Assets\Materials\DefaultDepthMaterial.cpp" />
     <ClCompile Include="Assets\Materials\DiffuseMaterial.cpp" />
     <ClCompile Include="Assets\Materials\PBRMaterial.cpp" />
+    <ClCompile Include="Assets\Materials\PBRTexturedMaterial.cpp" />
     <ClCompile Include="Assets\Materials\SpecularMaterial.cpp" />
     <ClCompile Include="Assets\Mesh.cpp" />
     <ClCompile Include="Assets\MeshManager.cpp" />
@@ -190,6 +193,7 @@
     <ClCompile Include="Components\Transform.cpp" />
     <ClCompile Include="GlInfo.cpp" />
     <ClCompile Include="Importer\ObjImporter.cpp" />
+    <ClCompile Include="Importer\stb_image.cpp" />
     <ClCompile Include="Input\InputManager.cpp" />
     <ClCompile Include="Rendering\FrameBufferObject.cpp" />
     <ClCompile Include="Rendering\RenderPath.cpp" />

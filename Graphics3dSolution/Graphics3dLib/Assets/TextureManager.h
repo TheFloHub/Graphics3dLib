@@ -28,8 +28,17 @@ namespace G3d
 
 		TexturePtr getRGB255() const;
 
+		TexturePtr getR255G0B0() const;
+
 		TexturePtr getRGBA255() const;
 
+		TexturePtr getL255() const;
+
+		TexturePtr getL0() const;
+
+		TexturePtr getMinRoughness() const;
+
+		TexturePtr getDefaultNormalMap() const;
 
 		// TODO: should only exist in TerrainClass
 		TexturePtr getDefaultHeightMap() const;

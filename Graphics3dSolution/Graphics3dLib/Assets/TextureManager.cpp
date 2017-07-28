@@ -2,6 +2,7 @@
 #include "Texture.h"
 #include <glm/gtc/noise.hpp>
 #include <random>
+#include <iostream>
 
 G3d::TextureManager& G3d::TextureManager::getInstance()
 {
@@ -23,6 +24,7 @@ G3d::TexturePtr G3d::TextureManager::load(std::string const& textureName, std::s
 	TexturePtr pTexture = get(textureName);
 	if (pTexture)
 	{
+		std::cout << "Texture with name " << textureName << " is already existing." << std::endl;
 		return pTexture;
 	}
 	return (mTextureMap.insert(std::make_pair(textureName, TexturePtr(new Texture(fileName))))).first->second;
@@ -43,9 +45,34 @@ G3d::TexturePtr G3d::TextureManager::getRGB255() const
 	return get("RGB255");
 }
 
+G3d::TexturePtr G3d::TextureManager::getR255G0B0() const
+{
+	return get("R255G0B0");
+}
+
 G3d::TexturePtr G3d::TextureManager::getRGBA255() const
 {
 	return get("RGBA255");
+}
+
+G3d::TexturePtr G3d::TextureManager::getL255() const
+{
+	return get("L255");
+}
+
+G3d::TexturePtr G3d::TextureManager::getL0() const
+{
+	return get("L0");
+}
+
+G3d::TexturePtr G3d::TextureManager::getMinRoughness() const
+{
+	return get("MinRoughness");
+}
+
+G3d::TexturePtr G3d::TextureManager::getDefaultNormalMap() const
+{
+	return get("DefaultNormalMap");
 }
 
 G3d::TexturePtr G3d::TextureManager::getDefaultHeightMap() const
@@ -60,17 +87,62 @@ G3d::TexturePtr G3d::TextureManager::getTerrainNoise() const
 
 void G3d::TextureManager::initStandardTextures()
 {
+	// RGB255
 	std::vector<unsigned char> data(4*4*3, 255);
 	mTextureMap.insert(
 		std::make_pair(
 		"RGB255", 
 		TexturePtr( new Texture(4, 4, 3, data) )));
 
+	// R255G0B0
+	data = std::vector<unsigned char>(4 * 4 * 3, 0);
+	for (size_t i = 0; i<data.size(); i += 3)
+	{
+		data[i] = 255;
+	}
+	mTextureMap.insert(
+		std::make_pair(
+		"R255G0B0",
+		TexturePtr(new Texture(4, 4, 3, data))));
+
+	// RGBA255
 	data = std::vector<unsigned char>(4*4*4, 255);
 	mTextureMap.insert(
 		std::make_pair(
 		"RGBA255", 
 		TexturePtr( new Texture(4, 4, 4, data) )));
+
+	// L255
+	data = std::vector<unsigned char>(4 * 4 * 1, 255);
+	mTextureMap.insert(
+		std::make_pair(
+		"L255",
+		TexturePtr(new Texture(4, 4, 1, data))));
+
+	// L0
+	data = std::vector<unsigned char>(4 * 4 * 1, 0);
+	mTextureMap.insert(
+		std::make_pair(
+		"L0",
+		TexturePtr(new Texture(4, 4, 1, data))));
+
+	// StandardNormalMap
+	data = std::vector<unsigned char>(4 * 4 * 3, (unsigned char)(255/2));
+	for (size_t i = 2; i<data.size(); i += 3)
+	{
+		data[i] = 255;
+	}
+	mTextureMap.insert(
+		std::make_pair(
+		"DefaultNormalMap",
+		TexturePtr(new Texture(4, 4, 3, data))));
+
+	// MinRoughness
+	data = std::vector<unsigned char>(4 * 4 * 1, 13);
+	mTextureMap.insert(
+		std::make_pair(
+		"MinRoughness",
+		TexturePtr(new Texture(4, 4, 1, data))));
 
 	createHeightMap();
 	createTerrainNoise();

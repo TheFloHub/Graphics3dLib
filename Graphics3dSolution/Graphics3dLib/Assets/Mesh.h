@@ -43,6 +43,13 @@ namespace G3d
 		std::vector<GLfloat> const& texCoords,
 		std::vector<GLuint> const& indices);
 
+	/** Create tangents and bitangents */
+	void generateTangentSpace(
+		std::vector<GLfloat> const& vertices,
+		std::vector<GLfloat> const& normals,
+		std::vector<GLfloat> const& texCoords,
+		std::vector<GLuint> const& indices);
+
 	/** The vertex array object of this mesh. */
 	GLuint mVao;
 
@@ -54,6 +61,12 @@ namespace G3d
 	
 	/** The VBO of the vertex texcoords. */
 	GLuint mVboTexcoords;
+
+	/** The VBO of the tangents. */
+	GLuint mVboTangents;
+
+	/** The VBO of the bitangents. */
+	GLuint mVboBitangents;
 	
 	/** The VBO of the index list. */
 	GLuint mVboIndices;

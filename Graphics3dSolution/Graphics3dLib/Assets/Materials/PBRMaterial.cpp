@@ -7,20 +7,17 @@
 #include <glm/gtc/type_ptr.hpp>
 
 G3d::PBRMaterial::PBRMaterial() :
-	Material(ShaderManager::getInstance().getPBRMaterial()),
+	Material(ShaderManager::getInstance().getPBRStandard()),
 	mRed(1.0f),
 	mGreen(1.0f),
 	mBlue(1.0f),
 	mMetallic(0.0f),
 	mRoughness(0.8f),
-	mTilingX(1.0f),
-	mTilingY(1.0f),
 	mMvpMatrixLoc(0),
 	mNormalMatrixLoc(0),
 	mAlbedoLoc(0),
 	mMetallicLoc(0),
-	mRoughnessLoc(0),
-	mTilingLoc(0)
+	mRoughnessLoc(0)
 {
 	mpShader->use();
 	mMvpMatrixLoc = mpShader->getUniformLocation("modelViewProjectionMatrix");
@@ -28,7 +25,6 @@ G3d::PBRMaterial::PBRMaterial() :
 	mAlbedoLoc = mpShader->getUniformLocation("albedo");
 	mMetallicLoc = mpShader->getUniformLocation("metallic");
 	mRoughnessLoc = mpShader->getUniformLocation("roughness");
-	mTilingLoc = mpShader->getUniformLocation("tiling");
 }
 
 G3d::PBRMaterial::~PBRMaterial()

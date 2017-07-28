@@ -22,6 +22,7 @@ G3d::MeshPtr G3d::MeshManager::load(std::string const& meshName, std::string con
 	MeshPtr pMesh = get(meshName);
 	if (pMesh)
 	{
+		std::cout << "Mesh with name " << meshName << " is already existing." << std::endl;
 		return pMesh;
 	}
 	return (mMeshMap.insert(std::make_pair(meshName, MeshPtr(new Mesh(fileName))))).first->second;
@@ -75,17 +76,17 @@ void G3d::MeshManager::initStandardMeshes()
 void G3d::MeshManager::createPlane()
 {
 	GLfloat v[] = {
-		 0.5f, 0.0f, -0.5f,
-		-0.5f, 0.0f, -0.5f,
-		-0.5f, 0.0f,  0.5f,
-		 0.5f, 0.0f,  0.5f
+		-0.5f, -0.5f, 0.0f,
+		 0.5f, -0.5f, 0.0f,
+		 0.5f,  0.5f, 0.0f,
+		-0.5f,  0.5f, 0.0f
 	};
 
 	GLfloat n[] = {
-		0.0f, 1.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,
-		0.0f, 1.0f, 0.0f,
-		0.0f, 1.0f, 0.0f
+		0.0f, 0.0f, 1.0f,
+		0.0f, 0.0f, 1.0f,
+		0.0f, 0.0f, 1.0f,
+		0.0f, 0.0f, 1.0f
 	};
 
 	GLfloat t[] = {

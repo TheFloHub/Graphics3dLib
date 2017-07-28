@@ -40,10 +40,6 @@ namespace G3d
 
 		float mRoughness;
 
-		float mTilingX;
-
-		float mTilingY;
-
 		GLuint mMvpMatrixLoc;
 
 		GLuint mNormalMatrixLoc;
@@ -54,11 +50,9 @@ namespace G3d
 
 		GLuint mRoughnessLoc;
 
-		GLuint mTilingLoc;
-
 	private:
 
-		PBRMaterial(Material const&) = delete;
+		PBRMaterial(PBRMaterial const&) = delete;
 
 		PBRMaterial& operator=(PBRMaterial const&) = delete;
 

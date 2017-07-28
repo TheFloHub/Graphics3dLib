@@ -29,19 +29,15 @@ namespace G3d
 
 		ShaderPtr get(std::string const& shaderName) const;
 
-		ShaderPtr getPBRMaterial() const;
+		ShaderPtr getPBRStandard() const;
+
+		ShaderPtr getPBRTextured() const;
 
 		ShaderPtr getDiffuse() const;
 
 		ShaderPtr getSpecular() const;
 
-		ShaderPtr getTerrain() const;
-
-		ShaderPtr getTerrainDepth() const;
-
 		ShaderPtr getDefaultDepth() const;
-
-		ShaderPtr getTerrainShadowMap() const;
 
 		bool initStandardShader();
 

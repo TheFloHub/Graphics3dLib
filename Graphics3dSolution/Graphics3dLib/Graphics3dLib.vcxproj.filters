@@ -119,6 +119,12 @@
     <ClInclude Include="Rendering\RenderPaths\FinalShadingPass.h">
       <Filter>Rendering\Renderpaths</Filter>
     </ClInclude>
+    <ClInclude Include="Assets\Materials\PBRTexturedMaterial.h">
+      <Filter>Assets\Materials</Filter>
+    </ClInclude>
+    <ClInclude Include="Importer\stb_image.h">
+      <Filter>Importer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Importer\ObjImporter.cpp">
@@ -205,6 +211,12 @@
     </ClCompile>
     <ClCompile Include="Rendering\RenderPaths\FinalShadingPass.cpp">
       <Filter>Rendering\Renderpaths</Filter>
+    </ClCompile>
+    <ClCompile Include="Assets\Materials\PBRTexturedMaterial.cpp">
+      <Filter>Assets\Materials</Filter>
+    </ClCompile>
+    <ClCompile Include="Importer\stb_image.cpp">
+      <Filter>Importer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

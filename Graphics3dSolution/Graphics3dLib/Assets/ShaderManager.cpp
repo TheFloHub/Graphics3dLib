@@ -5,15 +5,6 @@
 #include <fstream>
 #include <streambuf>
 
-// include shader source files here
-//#include "resources/shader/DeferredLight_vert.h"
-//#include "resources/shader/DeferredLight_frag.h"
-//#include "resources/shader/Diffuse_vert.h"
-//#include "resources/shader/Diffuse_frag.h"
-//#include "resources/shader/Specular_vert.h"
-//#include "resources/shader/Specular_frag.h"
-//#include "resources/shader/Terrain_vert.h"
-//#include "resources/shader/Terrain_frag.h"
 
 G3d::ShaderManager& G3d::ShaderManager::getInstance()
 {
@@ -38,6 +29,7 @@ G3d::ShaderPtr G3d::ShaderManager::loadFromFile(
 	ShaderPtr pShader = get(shaderName);
 	if (pShader)
 	{
+		std::cout << "Shader with name " << shaderName << " is already existing." << std::endl;
 		return pShader;
 	}
 
@@ -57,7 +49,7 @@ G3d::ShaderPtr G3d::ShaderManager::loadFromFile(
 
 G3d::ShaderPtr G3d::ShaderManager::get(std::string const& shaderName) const
 {
-	std::map<std::string, ShaderPtr>::const_iterator iter = mShaderMap.find(shaderName);
+	auto iter = mShaderMap.find(shaderName);
 	if (iter != mShaderMap.end())
 	{
 		return iter->second;
@@ -65,9 +57,14 @@ G3d::ShaderPtr G3d::ShaderManager::get(std::string const& shaderName) const
 	return ShaderPtr();
 }
 
-G3d::ShaderPtr G3d::ShaderManager::getPBRMaterial() const
+G3d::ShaderPtr G3d::ShaderManager::getPBRStandard() const
 {
-	return get("PBRMaterial"); 
+	return get("PBRStandard"); 
+}
+
+G3d::ShaderPtr G3d::ShaderManager::getPBRTextured() const
+{
+	return get("PBRTextured");
 }
 
 G3d::ShaderPtr G3d::ShaderManager::getDiffuse() const
@@ -80,24 +77,9 @@ G3d::ShaderPtr G3d::ShaderManager::getSpecular() const
 	return get("Specular");
 }
 
-G3d::ShaderPtr G3d::ShaderManager::getTerrain() const
-{
-	return get("Terrain");
-}
-
-G3d::ShaderPtr G3d::ShaderManager::getTerrainDepth() const
-{
-	return get("TerrainDepth");
-}
-
 G3d::ShaderPtr G3d::ShaderManager::getDefaultDepth() const
 {
 	return get("DefaultDepth");
-}
-
-G3d::ShaderPtr G3d::ShaderManager::getTerrainShadowMap() const
-{
-	return get("TerrainShadowMap");
 }
 
 bool G3d::ShaderManager::initStandardShader()
@@ -120,15 +102,14 @@ bool G3d::ShaderManager::initStandardShader()
 	if (!loadFromFile("DefaultDepth", base + "DefaultDepth.vert", base + "DefaultDepth.frag"))
 		return false;
 
-	if (!loadFromFile("PBRMaterial", base + "PBRMaterial.vert", base + "PBRMaterial.frag"))
+	if (!loadFromFile("PBRStandard", base + "PBRStandard.vert", base + "PBRStandard.frag"))
+		return false;
+
+	if (!loadFromFile("PBRTextured", base + "PBRTextured.vert", base + "PBRTextured.frag"))
 		return false;
 
 	if (!loadFromFile("FinalShading", base + "FinalShading.vert", base + "FinalShading.frag"))
 		return false;
 
-	//mShaderMap.insert(std::make_pair("DeferredLight", ShaderPtr(new Shader(DeferredLight_vert, DeferredLight_frag))));
-	//mShaderMap.insert(std::make_pair("Diffuse", ShaderPtr(new Shader(Diffuse_vert, Diffuse_frag))));
-	//mShaderMap.insert(std::make_pair("Specular", ShaderPtr(new Shader(Specular_vert, Specular_frag))));
-	//mShaderMap.insert(std::make_pair("Terrain", ShaderPtr(new Shader(Terrain_vert, Terrain_frag))));
 	return true;
 }

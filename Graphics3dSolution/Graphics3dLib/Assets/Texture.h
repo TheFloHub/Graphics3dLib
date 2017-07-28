@@ -77,8 +77,8 @@ namespace G3d
 
 	protected:
 		
-		Texture(Texture const&)/*=delete*/;
-		Texture& operator=(Texture const&)/*=delete*/;
+		Texture(Texture const&) = delete;
+		Texture& operator=(Texture const&) = delete;
 
 		GLuint mTextureHandle;
 

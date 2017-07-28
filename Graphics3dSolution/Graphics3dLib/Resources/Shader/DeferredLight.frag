@@ -123,7 +123,8 @@ void main()
 	vec4 gAlbedoData = texture(gAlbedo, TexCoords).rgba;
 	vec3 N = 2.0f * gNormalData.rgb - 1.0;	
 	float roughness = gNormalData.a;	
-	vec3 albedo = gAlbedoData.rgb;	// pow(gAlbedoData.rgb, 2.2) because albedo in sRGB space???									
+	// TODO: correct gamma in albedo textures at tex3d upload
+	vec3 albedo = vec3(pow(gAlbedoData.r, 2.2), pow(gAlbedoData.g, 2.2), pow(gAlbedoData.b, 2.2)); // gAlbedoData.rgb; 	or	  pow(gAlbedoData.rgb, 2.2) because albedo in sRGB space???		vec3(pow(gAlbedoData.r, 2.2), pow(gAlbedoData.g, 2.2), pow(gAlbedoData.b, 2.2));							
 	float metallic = gAlbedoData.a;													
 																									
 	// position from linear depth										

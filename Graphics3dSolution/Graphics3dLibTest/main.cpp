@@ -6,6 +6,7 @@
 #include <Graphics3dLib/Assets/Texture.h>
 #include <Graphics3dLib/Assets/TextureManager.h>
 #include <Graphics3dLib/Assets/Materials/PBRMaterial.h>
+#include <Graphics3dLib/Assets/Materials/PBRTexturedMaterial.h>
 #include <Graphics3dLib/Assets/MaterialManager.h>
 #include <Graphics3dLib/Input/InputManager.h>
 
@@ -30,7 +31,7 @@ std::unique_ptr<SceneObject> pRoot;
 std::unique_ptr<SceneRenderer> pRenderer;
 Camera* pCamera = nullptr;
 
-bool InitGL(int width, int height)
+bool initGL(int width, int height)
 {	
 	//glViewport(0, 0, width, height);
 	glEnable(GL_CULL_FACE);
@@ -38,7 +39,11 @@ bool InitGL(int width, int height)
 	glCullFace(GL_BACK);
 
 	// Fist init standard assets in this order
-	ShaderManager::getInstance().initStandardShader();
+	if (ShaderManager::getInstance().initStandardShader() == false)
+	{
+		std::cout << "Initialization of standard shader failed." << std::endl;
+		return false;
+	}
 	MeshManager::getInstance().initStandardMeshes();
 	TextureManager::getInstance().initStandardTextures();
 	MaterialManager::getInstance().initStandardMaterials();
@@ -48,17 +53,18 @@ bool InitGL(int width, int height)
 
 	MeshPtr pMeshSphere;
 	//MeshPtr pMeshTeddy;
-	//TexturePtr pRockTex;
-	//TexturePtr pHeightMap; 
-	//TexturePtr pImrodTexture; 
+	TexturePtr pRustedIronAlbedo;
+	TexturePtr pRustedIronMetallic;
+	TexturePtr pRustedIronRoughness;
+	TexturePtr pRustedIronNormal;
 	try
 	{
-		pMeshSphere = MeshManager::getInstance().load("Sphere", "D:\\3dModels\\isosphere.obj");
+		pMeshSphere = MeshManager::getInstance().load("Sphere", "D:\\3dModels\\capsule.obj");
 		//pMeshTeddy = MeshManager::getInstance().load("Teddy", "D:\\3dModels\\isosphere.obj");
-		//pRockTex = TextureManager::GetInstance().Load("Rock", "D:\\3dModels\\xy.jpg");
-		//pHeightMap = TextureManager::GetInstance().Load("HeightMap", "D:\\3dModels\\heightmap.png");
-		//pImrodTexture = TextureManager::GetInstance().Load("ImrodDiffuse", "D:\\3dModels\\imrod_diffuse2.jpg");
-
+		pRustedIronAlbedo = TextureManager::getInstance().load("RustedIronAlbedo", "D:\\3dModels\\comicWall\\albedo.png"); // D:\\3dModels\\rustediron\\albedo.png
+		pRustedIronMetallic = TextureManager::getInstance().load("RustedIronMetallic", "D:\\3dModels\\rustediron\\metallic.png");
+		pRustedIronRoughness = TextureManager::getInstance().load("RustedIronRoughness", "D:\\3dModels\\comicWall\\roughness.png");
+		pRustedIronNormal = TextureManager::getInstance().load("RustedIronNormal", "D:\\3dModels\\comicWall\\normal.png"); // D:\\3dModels\\rustediron\\normal.png
 	}
 	catch (std::exception const& exception)
 	{
@@ -77,7 +83,7 @@ bool InitGL(int width, int height)
 
 	// camera
 	SceneObject* pCameraObj = new SceneObject("Camera");
-	pCamera = new Camera(width, height, 0.1f, 30.0f, 80.0f);
+	pCamera = new Camera(width, height, 0.1f, 100.0f, 80.0f);
 	pCameraObj->addComponent(pCamera);
 	pCameraObj->addComponent(new CameraController);
 	pCameraObj->getTransform()->setPosition(glm::vec3(0.0f, 0.0f, -10.0f));
@@ -86,29 +92,35 @@ bool InitGL(int width, int height)
 
 	// lights
 	float intensity = 300.0f;
-	SceneObject* pPointLight1 = new SceneObject("PointLight1");
-	pPointLight1->addComponent(new Light(Light::POINT));
-	pPointLight1->getTransform()->setPosition(glm::vec3(-10.0f, -10.0f, -10.0f));
-	pPointLight1->getComponent<Light>()->setIntensity(intensity);
-	pRoot->addChild(pPointLight1);
+	//SceneObject* pPointLight1 = new SceneObject("PointLight1");
+	//pPointLight1->addComponent(new Light(Light::POINT));
+	//pPointLight1->getTransform()->setPosition(glm::vec3(-10.0f, -10.0f, -10.0f));
+	//pPointLight1->getComponent<Light>()->setIntensity(intensity);
+	//pRoot->addChild(pPointLight1);
 
-	SceneObject* pPointLight2 = new SceneObject("PointLight2");
-	pPointLight2->addComponent(new Light(Light::POINT));
-	pPointLight2->getTransform()->setPosition(glm::vec3( 10.0f, -10.0f, -10.0f));
-	pPointLight2->getComponent<Light>()->setIntensity(intensity);
-	pRoot->addChild(pPointLight2);
+	//SceneObject* pPointLight2 = new SceneObject("PointLight2");
+	//pPointLight2->addComponent(new Light(Light::POINT));
+	//pPointLight2->getTransform()->setPosition(glm::vec3( 10.0f, -10.0f, -10.0f));
+	//pPointLight2->getComponent<Light>()->setIntensity(intensity);
+	//pRoot->addChild(pPointLight2);
 
-	SceneObject* pPointLight3 = new SceneObject("PointLight3");
-	pPointLight3->addComponent(new Light(Light::POINT));
-	pPointLight3->getTransform()->setPosition(glm::vec3(-10.0f,  10.0f, -10.0f));
-	pPointLight3->getComponent<Light>()->setIntensity(intensity);
-	pRoot->addChild(pPointLight3);
+	//SceneObject* pPointLight3 = new SceneObject("PointLight3");
+	//pPointLight3->addComponent(new Light(Light::POINT));
+	//pPointLight3->getTransform()->setPosition(glm::vec3(-10.0f,  10.0f, -10.0f));
+	//pPointLight3->getComponent<Light>()->setIntensity(intensity);
+	//pRoot->addChild(pPointLight3);
 
-	SceneObject* pPointLight4 = new SceneObject("PointLight4");
-	pPointLight4->addComponent(new Light(Light::POINT));
-	pPointLight4->getTransform()->setPosition(glm::vec3( 10.0f,  10.0f, -10.0f));
-	pPointLight4->getComponent<Light>()->setIntensity(intensity);
-	pRoot->addChild(pPointLight4);
+	//SceneObject* pPointLight4 = new SceneObject("PointLight4");
+	//pPointLight4->addComponent(new Light(Light::POINT));
+	//pPointLight4->getTransform()->setPosition(glm::vec3( 10.0f,  10.0f, -10.0f));
+	//pPointLight4->getComponent<Light>()->setIntensity(intensity);
+	//pRoot->addChild(pPointLight4);
+
+	SceneObject* pDirectionalLight = new SceneObject("DirectionalLight");
+	pDirectionalLight->addComponent(new Light(Light::DIRECTIONAL));
+	pDirectionalLight->getComponent<Light>()->setIntensity(10.0f);
+	pDirectionalLight->getTransform()->rotate(45.0f, glm::vec3(0.0f, 1.0f, 0.0f));
+	pRoot->addChild(pDirectionalLight);
 
 
 	// spheres
@@ -120,59 +132,27 @@ bool InitGL(int width, int height)
 	{
 		for (int col = 0; col < numColumns; ++col)
 		{
-			PBRMaterialPtr pMaterial = PBRMaterialPtr(new PBRMaterial);
-			pMaterial->setAlbedo(0.5f, 0.0f, 0.0f);
-			pMaterial->setMetallic((float)row/(float)numRows);
-			pMaterial->setRoughness(glm::clamp((float)col/(float)numColumns, 0.05f, 1.0f));
+			//PBRMaterialPtr pMaterial = PBRMaterialPtr(new PBRMaterial);
+			//pMaterial->setAlbedo(1.0f, 0.0f, 0.0f);
+			//pMaterial->setMetallic((float)row/(float)numRows);
+			//pMaterial->setRoughness(glm::clamp((float)col/(float)numColumns, 0.05f, 1.0f));
+			//pMaterial->setMetallic(0.0f);
+			//pMaterial->setRoughness(0.05f);
+
+			PBRTexturedMaterialPtr pMaterial = PBRTexturedMaterialPtr(new PBRTexturedMaterial);
+			pMaterial->setAlbedo(pRustedIronAlbedo);
+			//pMaterial->setMetallic(pRustedIronMetallic);
+			pMaterial->setRoughness(pRustedIronRoughness);
+			pMaterial->setNormal(pRustedIronNormal);
 
 			SceneObject* pSphere = new SceneObject("Sphere");
-			pSphere->addComponent(new MeshRenderer(pMeshSphere, pMaterial));
+			pSphere->addComponent(new MeshRenderer(pMeshSphere, pMaterial)); // pMeshSphere pMeshPlane
 			pSphere->getTransform()->setPosition(glm::vec3((float)(col - (numColumns / 2)) * spacing, (float)(row - (numRows / 2)) * spacing, 0.0f));
+			pSphere->getTransform()->setRotation(90.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 			
 			pRoot->addChild(pSphere);
 		}
 	}
-
-
-	//SceneObject* pTeddy = new SceneObject("Teddy");
-	//pTeddy->AddComponent(new MeshRenderer(pMeshTeddy, pDiffuseMaterial));
-	//pTeddy->GetTransform()->SetPosition(glm::vec3(2.0f, 0.0f, 4.0f));
-	//pTeddy->GetTransform()->SetScale(glm::vec3(2.0f, 2.0f, 2.0f));
-	//pTeddy->GetTransform()->SetRotation(195.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-
-	//SceneObject* pPlane = new SceneObject("Plane");
-	//pPlane->addComponent(new MeshRenderer(pMeshPlane, pSpecularMaterial));
-	//pPlane->getTransform()->SetPosition(glm::vec3(2.0f, 0.0f, 4.0f));
-	//pPlane->getTransform()->setScale(glm::vec3(10.0f, 1.0f, 10.0f));
-	//pPlane->getTransform()->SetRotation(180.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-
-
-
-	//SceneObject* pDirectionalLight = new SceneObject("DirectionalLight");
-	//pDirectionalLight->addComponent(new Light(Light::DIRECTIONAL));
-	//pDirectionalLight->getComponent<Light>()->setIntensity(1.0f);
-	//pDirectionalLight->getTransform()->rotate(135.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-
-	//SceneObject* pDirectionalLight2 = new SceneObject("DirectionalLight");
-	//pDirectionalLight2->AddComponent(new Light(Light::DIRECTIONAL));
-	//pDirectionalLight2->GetComponent<Light>()->SetIntensity(0.2f);
-	//pDirectionalLight2->GetComponent<Light>()->SetColor(glm::vec3(0.8f, 0.95f, 1.0f));
-	//pDirectionalLight2->GetTransform()->SetPosition(glm::vec3(0.0f, 10.0f, 0.0f));
-	//pDirectionalLight2->GetTransform()->Rotate(45.0f, glm::vec3(1.0f, 0.0f, 0.0f));
-	//pDirectionalLight2->GetTransform()->Rotate(-90.0f, glm::vec3(0.0f, 1.0f, 0.0f));
-
-	//SceneObject* pPointLight1 = new SceneObject("PointLight1");
-	//pPointLight1->AddComponent(new Light(Light::POINT));
-	//pPointLight1->GetTransform()->Translate(glm::vec3(0.0f, -2.0f, 7.0f));
-	//pPointLight1->GetComponent<Light>()->SetIntensity(6.0f);
-
-	//pRoot->AddChild(pTerrain);
-	//pRoot->addChild(pSphere);
-	//pRoot->AddChild(pTeddy);
-	//pRoot->addChild(pPlane);
-	//pRoot->addChild(pDirectionalLight);
-	//pRoot->AddChild(pDirectionalLight2);
-	//pRoot->AddChild(pPointLight1);
 
 	// renderer
 	pRenderer = std::unique_ptr<SceneRenderer>(new SceneRenderer(width, height));
@@ -181,12 +161,12 @@ bool InitGL(int width, int height)
 	return true;
 }
 
-void ErrorCallback(int error, const char* description)
+void errorCallback(int error, const char* description)
 {
 	std::cout << "GLFW Error: " << description << std::endl;
 }
 
-void ResizeCallback(GLFWwindow* pWindow, int width, int height)
+void resizeCallback(GLFWwindow* pWindow, int width, int height)
 {
 	if (width > 0 && height > 0)
 	{
@@ -200,11 +180,15 @@ int main(void)
 {
 	GLFWwindow* window = nullptr;
 
-	glfwSetErrorCallback(ErrorCallback);
+	glfwSetErrorCallback(errorCallback);
 
-	// Initialize the library 
-	if (!glfwInit())
+	// Initialize GLFW library 
+	if (glfwInit() == false)
+	{
+		std::cout << "GLFW initialization failed." << std::endl;
+		system("pause");
 		exit(EXIT_FAILURE);
+	}
 
 	// Create a windowed mode window and its OpenGL context 
 	int const width = 1024;
@@ -215,11 +199,13 @@ int main(void)
 	window = glfwCreateWindow(width, height, "Hello World", NULL, NULL);
 	if (!window)
 	{
+		std::cout << "GLFW couldn't create a window." << std::endl;
 		glfwTerminate();
+		system("pause");
 		exit(EXIT_FAILURE);
 	}
 
-	glfwSetFramebufferSizeCallback(window, ResizeCallback);
+	glfwSetFramebufferSizeCallback(window, resizeCallback);
 	InputManager::getInstance().init(window);
 
 	// Make the window's context current 
@@ -230,13 +216,18 @@ int main(void)
 	glewExperimental = GL_TRUE;
 	if (glewInit() != GLEW_OK)
 	{
-		std::cout << "GLEW Init() failed." << std::endl;
+		std::cout << "GLEW initialization failed." << std::endl;
+		glfwTerminate();
+		system("pause");
 		exit(EXIT_FAILURE);
 	}
 
-	if (!InitGL(width, height))
+	// Initialize G3dLib
+	if (initGL(width, height) == false)
 	{
-		std::cout << "InitGL() failed." << std::endl;
+		std::cout << "G3dLib initialization failed." << std::endl;
+		glfwTerminate();
+		system("pause");
 		exit(EXIT_FAILURE);
 	}
 
