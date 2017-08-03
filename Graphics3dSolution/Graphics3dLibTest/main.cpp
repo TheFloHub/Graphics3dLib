@@ -23,6 +23,8 @@
 #include <GLFW/glfw3.h>
 #include <iostream>
 #include <string>
+#include <chrono>
+#include <thread>
 
 using namespace G3d;
 
@@ -86,7 +88,8 @@ bool initGL(int width, int height)
 	pCamera = new Camera(width, height, 0.1f, 100.0f, 80.0f);
 	pCameraObj->addComponent(pCamera);
 	pCameraObj->addComponent(new CameraController);
-	pCameraObj->getTransform()->setPosition(glm::vec3(0.0f, 0.0f, -10.0f));
+	pCameraObj->getTransform()->lookAt(glm::vec3(0.0f, 0.0f, -5.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	//pCameraObj->getTransform()->setPosition(glm::vec3(0.0f, 0.0f, -10.0f));
 	//pCameraObj->getTransform()->setRotation(10.0f, glm::vec3(1.0f, 0.0f, 0.0f));
 	pRoot->addChild(pCameraObj);
 
@@ -274,6 +277,8 @@ int main(void)
 		}
 		//std::cout << 1.0/(fpsSum/(double)fpsVector.size()) << std::endl;
 		glfwSetWindowTitle(window, (std::string("FPS: ") + std::to_string((int)(1.0 / (fpsSum / (double)fpsVector.size())))).c_str());
+
+		std::this_thread::sleep_for(std::chrono::milliseconds(5));
 	}
 
 	glfwTerminate();

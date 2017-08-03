@@ -7,10 +7,14 @@
 #include <glm/gtc/matrix_inverse.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+#include <iostream>
+
 G3d::CameraController::CameraController() : 
 Component(),
-mMoveSpeed(1.0f),
-mRotationSpeed(5.0f)
+mMoveSpeed(2.0),
+mRotationSpeed(10.0),
+mRotationX(0.0),
+mRotationY(0.0)
 {
 
 }
@@ -41,20 +45,51 @@ void G3d::CameraController::update(double deltaTime)
 	}
 
 	Transform& transform = *(mpSceneObject->getTransform());
+
+	// rotation
+	mRotationX -= InputManager::getInstance().getMouseDeltaX() * mRotationSpeed * deltaTime;
+	mRotationY += InputManager::getInstance().getMouseDeltaY() * mRotationSpeed * deltaTime;
+	transform.setRotation(
+		glm::angleAxis(glm::radians((float)mRotationX), glm::vec3(0.0f, 1.0f, 0.0f)) *
+		glm::angleAxis(glm::radians((float)mRotationY), glm::vec3(1.0f, 0.0f, 0.0f))
+	);
+
+	// translation
+	glm::mat4 localToWorldMatrix = transform.getLocalToWorldMatrix();
+	glm::vec3 forwardDir(localToWorldMatrix[2][0], localToWorldMatrix[2][1], localToWorldMatrix[2][2]);
+	glm::vec3 upDir(localToWorldMatrix[1][0], localToWorldMatrix[1][1], localToWorldMatrix[1][2]);
+	glm::vec3 leftDir(localToWorldMatrix[0][0], localToWorldMatrix[0][1], localToWorldMatrix[0][2]);
+	glm::vec3 translation(0.0f, 0.0f, 0.0f);
+
 	if (InputManager::getInstance().getKey(KEY_W))
 	{
-		transform.translate(glm::vec3(0.0f, 0.0, mMoveSpeed*deltaTime));
+		translation += forwardDir;
 	}
 	if (InputManager::getInstance().getKey(KEY_S))
 	{
-		transform.translate(glm::vec3(0.0f, 0.0, -mMoveSpeed*deltaTime));
+		translation -= forwardDir;
 	}
 	if (InputManager::getInstance().getKey(KEY_A))
 	{
-		transform.translate(glm::vec3(mMoveSpeed*deltaTime, 0.0, 0.0f));
+		translation += leftDir;
 	}
 	if (InputManager::getInstance().getKey(KEY_D))
 	{
-		transform.translate(glm::vec3(-mMoveSpeed*deltaTime, 0.0, 0.0f));
+		translation -= leftDir;
+	}
+	if (InputManager::getInstance().getKey(KEY_SPACE))
+	{
+		translation += upDir;
+	}
+	if (InputManager::getInstance().getKey(KEY_LEFT_SHIFT))
+	{
+		translation -= upDir;
+	}
+
+	if (glm::length(translation) > 0.0f)
+	{
+		glm::normalize(translation);
+		translation *= mMoveSpeed * deltaTime;
+		transform.translate(translation);
 	}
 }

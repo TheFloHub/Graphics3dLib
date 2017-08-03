@@ -4,6 +4,8 @@
 #include <glm/gtc/matrix_inverse.hpp>
 #include <glm/gtc/type_ptr.hpp>
 //#include <gtx/quaternion.hpp>
+//#include <glm/gtx/io.hpp>
+//#include <iostream>
 
 G3d::Transform::Transform() : 
 Component(),
@@ -11,6 +13,15 @@ mScale(1.0f,1.0f,1.0f),
 mPosition(0.0f,0.0f,0.0f),
 mQuaternion()
 {
+	//glm::mat4 m;
+
+
+	//glm::mat4 ra1 = glm::rotate(m, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	//glm::mat4 ra2 = glm::rotate(ra1, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));	//std::cout << ra2 << std::endl << std::endl;
+
+	//glm::mat4 rb1 = glm::rotate(m, glm::radians(-90.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	//glm::mat4 rb2 = glm::rotate(m, glm::radians(90.0f), glm::vec3(1.0f, 0.0f, 0.0f));	//std::cout << rb1 * rb2 << std::endl << std::endl;
+	//std::cout << rb2 * rb1 << std::endl << std::endl;
 
 }
 
@@ -55,16 +66,38 @@ void G3d::Transform::setRotation(float angle, glm::vec3 const& axis)
 	mQuaternion = glm::angleAxis(glm::radians(angle), axis);
 }
 
+void G3d::Transform::setRotation(glm::quat const & quaternion)
+{
+	mQuaternion = quaternion;
+}
+
 void G3d::Transform::setPosition(glm::vec3 const& position)
 {
 	mPosition = position;
 }
 
-//void G3d::Transform::LookAt(glm::vec3 const& eye, glm::vec3 const& center, glm::vec3 const& up)
-//{
-//	mQuaternion = glm::quat_cast(glm::lookAt(eye, center, up));
-//	mPosition = center;
-//}
+void G3d::Transform::lookAt(glm::vec3 const& eye, glm::vec3 const& center, glm::vec3 const& up)
+{
+	glm::vec3 const f(normalize(center - eye));
+	glm::vec3 const s(normalize(cross(up, f)));
+	glm::vec3 const u(cross(f, s));
+
+	glm::mat3 r(1.0f);
+	r[0][0] = s.x;
+	r[0][1] = s.y;
+	r[0][2] = s.z;
+
+	r[1][0] = u.x;
+	r[1][1] = u.y;
+	r[1][2] = u.z;
+
+	r[2][0] = f.x;
+	r[2][1] = f.y;
+	r[2][2] = f.z;
+
+	mQuaternion = glm::quat_cast(r);
+	mPosition = eye;
+}
 
 glm::mat4 G3d::Transform::getLocalToParentMatrix() const
 {
@@ -96,7 +129,7 @@ glm::mat4 G3d::Transform::getWorldToLocalMatrix() const
 	return getParentToLocalMatrix(); // glm::mat4() or GetParentToLocalMatrix() ?
 }
 
-glm::mat3 G3d::Transform::getLocalToWorldRotationMatrix() const
+glm::mat3 G3d::Transform::getLocalToWorldRotationMatrix() const // TODO: scale?
 {
 	if (mpSceneObject != nullptr && mpSceneObject->getParent() != nullptr)
 	{
@@ -105,7 +138,7 @@ glm::mat3 G3d::Transform::getLocalToWorldRotationMatrix() const
 	return glm::mat3_cast(mQuaternion);
 }
 
-glm::mat3 G3d::Transform::getWorldToLocalRotationMatrix() const
+glm::mat3 G3d::Transform::getWorldToLocalRotationMatrix() const // TODO: scale?
 {
 	if (mpSceneObject != nullptr && mpSceneObject->getParent() != nullptr)
 	{

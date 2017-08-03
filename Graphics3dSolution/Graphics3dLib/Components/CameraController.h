@@ -25,9 +25,13 @@ namespace G3d
 
 		Component* clone() const override;
 
-		float mMoveSpeed;
+		double mMoveSpeed;
 
-		float mRotationSpeed;
+		double mRotationSpeed;
+
+		double mRotationX;
+
+		double mRotationY;
 
 	private:
 

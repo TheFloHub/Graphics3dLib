@@ -131,6 +131,10 @@ namespace G3d
 
 		bool getMouseButtonUp(MouseInput name) const;
 
+		double getMouseDeltaX() const;
+
+		double getMouseDeltaY() const;
+
 	private:
 		
 		InputManager();
@@ -147,6 +151,8 @@ namespace G3d
 
 		static void mouseButtonCallback(GLFWwindow* pWindow, int button, int action, int mods);
 
+		static void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos);
+
 		std::vector<unsigned char> mKey;
 
 		std::vector<unsigned char> mKeyDown;
@@ -158,6 +164,14 @@ namespace G3d
 		std::vector<unsigned char> mMouseButtonDown;
 
 		std::vector<unsigned char> mMouseButtonUp;
+
+		double mLastX;
+
+		double mLastY;
+
+		double mDiffX;
+
+		double mDiffY;
 
 	};
 

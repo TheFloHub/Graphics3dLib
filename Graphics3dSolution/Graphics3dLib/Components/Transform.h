@@ -37,9 +37,11 @@ namespace G3d
 
 		void setRotation(float angle, glm::vec3 const& axis);
 
+		void setRotation(glm::quat const& quaternion);
+
 		void setPosition(glm::vec3 const& position);
 
-		//void lookAt(glm::vec3 const& eye, glm::vec3 const& center, glm::vec3 const& up);
+		void lookAt(glm::vec3 const& eye, glm::vec3 const& center, glm::vec3 const& up);
 
 		glm::mat4 getLocalToParentMatrix() const;
 
